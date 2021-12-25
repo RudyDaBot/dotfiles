@@ -8,13 +8,14 @@ sudo sed -i "s/#Color/Color/" /etc/pacman.conf
 sudo sed -i "s/#ParallelDownloads=5/ParallelDownloads=5/" /etc/pacman.conf
 
 # Install Vim, Htop and Git
-sudo pacman -S vim htop git
+sudo pacman -S vim htop git base-devel
 
 # Install Yay
 git clone https://aur.archlinux.org/yay.git/
 cd yay
 makepkg -si
 cd ..
+rm -rf yay/
 
 # Install Virt-Manager with QEMU/KVM
 yay -S qemu virt-manager ebtables
@@ -52,7 +53,7 @@ sudo pacman -S chromium
 file=./win.iso
 if [[ -f win.iso ]]
 then
-    sudo pacman -S p7zip 
+    sudo pacman -S p7zip
     7z e win.iso sources/install.wim
     sudo 7z e install.wim 1/Windows/{Fonts/"*".{ttf,ttc},System32/Licenses/neutral/"*"/"*"/license.rtf} -o/usr/share/fonts/WindowsFonts/
     rm install.wim
@@ -62,7 +63,7 @@ else
     echo "Windows iso not found, skipping microsoft fonts installation. Please make sure a Windows iso with the name 'win.iso' is present in the same directory as this script"
 fi
 
-# Install Python      
+# Install Python
 sudo pacman -S python python-pip
 
 # Install NodeJS via Node Version Manager
