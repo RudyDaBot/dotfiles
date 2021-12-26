@@ -40,8 +40,8 @@ sudo sed -i "s/#user = \"root\"/user = \"$qemuUser\"/" /etc/libvirt/qemu.conf
 sudo systemctl enable libvirtd
 sudo systemctl start libvirtd
 
-# Install VSCodium
-yay -S vscodium code-marketplace
+# Install VSCode
+yay -S visual-studio-code-bin
 
 # Install Github CLI
 sudo pacman -S github-cli
