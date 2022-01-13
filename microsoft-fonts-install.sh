@@ -8,5 +8,5 @@ then
     sudo chmod 655 /usr/share/fonts/WindowsFonts/
     fc-cache --force
 else
-    echo "Windows iso not found, skipping microsoft fonts installation. Please >
+    echo "Windows iso not found, skipping microsoft fonts installation."
 fi
