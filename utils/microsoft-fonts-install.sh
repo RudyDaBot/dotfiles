@@ -1,5 +1,5 @@
 #!/bin/bash
-read -p "Path to windows iso" file
+read -p "Path to windows iso: " file
 if [[ -f $file ]]
 then
     7z e win.iso sources/install.wim
