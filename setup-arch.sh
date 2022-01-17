@@ -15,8 +15,10 @@ cat << EOF
 |* Docker and Docker Compose                                           |
 |* Microsoft Fonts                                                     |
 |                                                                      |
-|Note:- Please pay attention to yay prompts,                           |
-|since i don't know how to autofill them *yet*                         |
+|Note: Please pay attention to yay prompts, since i don't know how     |
+|to autofill them *yet*                                                |
+|                                                                      |
+|Optionally: This script can also run `./utils/venv-create.sh` for you |
 └----------------------------------------------------------------------┘
 EOF
 
@@ -87,6 +89,16 @@ sudo pacman -S --noconfirm docker
 
 # Install Docker Compose
 ./utils/docker-compose-install.sh
+
+# Run Virtual Python Environment Script
+while true; do
+    read -p "Do you wish to run the virtual python environment script? " yn
+    case $yn in
+        [Yy]* ) ./utils/venv-create.sh --noconfirm;; break;;
+        [Nn]* ) exit;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
 
 cat << EOF
 ┌---------------------------------------------------------------------┐

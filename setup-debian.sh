@@ -14,6 +14,8 @@ cat << EOF
 |* Rust                                                                |
 |* Docker and Docker Compose                                           |
 |* Microsoft Fonts                                                     |
+|                                                                      |
+|Optionally: This script can also run `./utils/venv-create.sh` for you |
 └----------------------------------------------------------------------┘
 EOF
 
@@ -89,6 +91,16 @@ sudo apt-get install --assume-yes docker-ce docker-ce-cli containerd.io
 
 # Install Docker Compose
 ./utils/docker-compose-install.sh
+
+# Run Virtual Python Environment Script
+while true; do
+    read -p "Do you wish to run the virtual python environment script? " yn
+    case $yn in
+        [Yy]* ) ./utils/venv-create.sh --noconfirm;; break;;
+        [Nn]* ) exit;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
 
 cat << EOF
 ┌---------------------------------------------------------------------┐
