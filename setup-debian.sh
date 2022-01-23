@@ -13,6 +13,7 @@ cat << EOF
 |* NodeJS via the Node Version Manager                                 |
 |* Rust                                                                |
 |* Docker and Docker Compose                                           |
+|* Flatpak                                                             |
 |* Microsoft Fonts                                                     |
 |                                                                      |
 |Optionally: This script can also run `./utils/venv-create.sh` for you |
@@ -92,6 +93,10 @@ sudo apt-get install --assume-yes docker-ce docker-ce-cli containerd.io
 # Install Docker Compose
 ./utils/docker-compose-install.sh
 
+# Install Flatpak
+sudo apt install flatpak
+sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
 # Run Virtual Python Environment Script
 while true; do
     read -p "Do you wish to run the virtual python environment script? " yn
@@ -107,5 +112,6 @@ cat << EOF
 |All Done! This script has succesfully completed, please reboot so    |
 |that changes take effect :)                                          |
 └---------------------------------------------------------------------┘
+(╯°□°）╯︵ ┻━┻ 
 EOF
 echo

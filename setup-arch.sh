@@ -13,10 +13,10 @@ cat << EOF
 |* NodeJS via the Node Version Manager                                 |
 |* Rust                                                                |
 |* Docker and Docker Compose                                           |
+|* Flatpak                                                             |
 |* Microsoft Fonts                                                     |
 |                                                                      |
-|Note: Please pay attention to yay prompts, since i don't know how     |
-|to autofill them *yet*                                                |
+|Note: Please pay attention to yay prompts                             |
 |                                                                      |
 |Optionally: This script can also run `./utils/venv-create.sh` for you |
 └----------------------------------------------------------------------┘
@@ -90,6 +90,9 @@ sudo pacman -S --noconfirm docker
 # Install Docker Compose
 ./utils/docker-compose-install.sh
 
+# Install Flatpak
+sudo pacman -S flatpak
+
 # Run Virtual Python Environment Script
 while true; do
     read -p "Do you wish to run the virtual python environment script? " yn
@@ -103,7 +106,8 @@ done
 cat << EOF
 ┌---------------------------------------------------------------------┐
 |All Done! This script has succesfully completed, please reboot so    |
-|that changes take effect :)                                          |
+|that changes take effect.                                            |
 └---------------------------------------------------------------------┘
+(╯°□°）╯︵ ┻━┻ 
 EOF
 echo
