@@ -10,6 +10,7 @@ cat << EOF
 |* VSCode                                                              |
 |* Chromium                                                            |
 |* Github CLI                                                          |
+|* Python3 with PiP and Venv                                           |
 |* NodeJS via the Node Version Manager                                 |
 |* Rust                                                                |
 |* Docker and Docker Compose                                           |
