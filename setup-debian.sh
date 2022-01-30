@@ -1,14 +1,26 @@
 #!/bin/bash
 
+if [ "$EUID" -ne 0 ] then 
 cat << EOF
 ┌----------------------------------------------------------------------┐
-|This Bash Script is made by Rishab (@Grobo021 on GitHub) to install:- |
+|Please don't run this script as root. We will ask you for the         |
+|password if we need root access.                                      |
+└----------------------------------------------------------------------┘
+┬─┬ ノ( ゜-゜ノ)
+EOF
+exit
+fi
+
+cat << EOF
+┌----------------------------------------------------------------------┐
+|This Bash Script is made by Rishab (@Grobo021 on GitHub) to install:  |
 |* Vim                                                                 |
 |* HTop                                                                |
 |* Git                                                                 |
 |* ZSH                                                                 |
 |* VSCode                                                              |
 |* Chrome                                                              |
+|* Librewolf                                                           |
 |* Github CLI                                                          |
 |* Python3 with PiP and Venv                                           |
 |* NodeJS via the Node Version Manager                                 |
@@ -74,6 +86,12 @@ wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo apt-get install ./google-chrome-stable_current_amd64.deb
 rm google-chrome-stable_current_amd64.deb
 
+# Install Librewolf
+echo "deb [arch=amd64] http://deb.librewolf.net $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/librewolf.list
+sudo wget https://deb.librewolf.net/keyring.gpg -O /etc/apt/trusted.gpg.d/librewolf.gpg
+sudo apt update
+sudo apt install librewolf -y
+
 # Install Microsoft Fonts
 ./utils/microsoft-fonts-install.sh
 
@@ -90,6 +108,9 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docke
 
 sudo apt-get update
 sudo apt-get install --assume-yes docker-ce docker-ce-cli containerd.io
+
+# Add the person running this script to the docker group
+sudo usermod -aG docker $USER
 
 # Install Docker Compose
 ./utils/docker-compose-install.sh

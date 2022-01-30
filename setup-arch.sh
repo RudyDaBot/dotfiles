@@ -1,14 +1,26 @@
 #!/bin/bash
 
+if [ "$EUID" -ne 0 ] then 
 cat << EOF
 ┌----------------------------------------------------------------------┐
-|This Bash Script is made by Rishab (@Grobo021 on GitHub) to install:- |
+|Please don't run this script as root. We will ask you for the         |
+|password if we need root access.                                      |
+└----------------------------------------------------------------------┘
+┬─┬ ノ( ゜-゜ノ)
+EOF
+exit
+fi
+
+cat << EOF
+┌----------------------------------------------------------------------┐
+|This Bash Script is made by Rishab (@Grobo021 on GitHub) to install:  |
 |* Vim                                                                 |
 |* HTop                                                                |
 |* Git                                                                 |
 |* ZSH                                                                 |
 |* VSCode                                                              |
 |* Chromium                                                            |
+|* Librewolf                                                           |
 |* Github CLI                                                          |
 |* Python3 with PiP and Venv                                           |
 |* NodeJS via the Node Version Manager                                 |
@@ -40,12 +52,21 @@ sudo sed -i "s/#Color/Color/" /etc/pacman.conf
 sudo sed -i "s/#ParallelDownloads=5/ParallelDownloads=5/" /etc/pacman.conf
 
 # Install Things 
-sudo pacman -S --no-confirm \ 
+sudo pacman -S --no-confirm \
+    # Vim, HTop, GiT
     vim htop git \
+    # Important system tools like fakeroot
     base-devel \
+    # 7zip but for linux, needed for microsoft fonts
     p7zip \
+    # Z Shell
     zsh \
-    python python-pip
+    # Python and PiP package manager
+    python python-pip \
+    # Github CLI and Chromium
+    github-cli chromium \
+    # Docker and Flatpak
+    docker flatpak
 
 # Install Yay
 git clone https://aur.archlinux.org/yay.git/
@@ -57,24 +78,22 @@ rm -rf yay/
 # Change user shell to zsh
 chsh -s $(which zsh)
 
-# Install Virt-Manager with QEMU/KVM
-yay -S qemu virt-manager ebtables
+# Install More things
+yay -S \
+    # QEMU/KVM with Virt-Manager
+    qemu virt-manager ebtables \
+    # VSCode
+    visual-studio-code-bin \
+    # Librewolf
+    librewolf-bin
 
-# Add the person running this script to the libvirt group
+# Add the person running this script to the libvirt and docker groups
 sudo usermod -aG libvirt $USER
+sudo usermod -aG docker $USER
 
 # Enable and Start Libvirt Daemon
 sudo systemctl enable libvirtd
 sudo systemctl start libvirtd
-
-# Install VSCode
-yay -S visual-studio-code-bin
-
-# Install Github CLI
-sudo pacman -S --noconfirm github-cli
-
-# Install Chromium
-sudo pacman -S --noconfirm chromium
 
 # Install Microsoft Fonts
 ./utils/microsoft-fonts-install.sh
@@ -85,14 +104,8 @@ sudo pacman -S --noconfirm chromium
 # Install Rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
-# Install Docker
-sudo pacman -S --noconfirm docker
-
 # Install Docker Compose
 ./utils/docker-compose-install.sh
-
-# Install Flatpak
-sudo pacman -S flatpak
 
 # Run Virtual Python Environment Script
 while true; do
