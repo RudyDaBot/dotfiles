@@ -4,8 +4,8 @@ if [[ "$EUID" == 0 ]]
 then 
 cat << EOF
 ┌──────────────────────────────────────────────────────────────────────┐
-│Please don't run this script as root. We will ask you for the         │
-│password if we need root access.                                      │
+│Please don't run this script as root as it may break you system.      │
+│We will ask you for the password if we need root access.              │
 └──────────────────────────────────────────────────────────────────────┘
 ┬─┬ ノ( ゜-゜ノ)
 EOF
