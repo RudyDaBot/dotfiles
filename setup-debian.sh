@@ -3,35 +3,35 @@
 if [[ "$EUID" == 0 ]]
 then 
 cat << EOF
-┌----------------------------------------------------------------------┐
-|Please don't run this script as root. We will ask you for the         |
-|password if we need root access.                                      |
-└----------------------------------------------------------------------┘
+┌──────────────────────────────────────────────────────────────────────┐
+│Please don't run this script as root. We will ask you for the         │
+│password if we need root access.                                      │
+└──────────────────────────────────────────────────────────────────────┘
 ┬─┬ ノ( ゜-゜ノ)
 EOF
 exit
 fi
 
 cat << EOF
-┌----------------------------------------------------------------------┐
-|This Bash Script is made by Rishab (@Grobo021 on GitHub) to install:  |
-|* Vim                                                                 |
-|* HTop                                                                |
-|* Git                                                                 |
-|* ZSH                                                                 |
-|* VSCode                                                              |
-|* Chrome                                                              |
-|* Librewolf                                                           |
-|* Github CLI                                                          |
-|* Python3 with PiP and Venv                                           |
-|* NodeJS via the Node Version Manager                                 |
-|* Rust                                                                |
-|* Docker and Docker Compose                                           |
-|* Flatpak                                                             |
-|* Microsoft Fonts                                                     |
-|                                                                      |
-|Optionally: This script can also run ./utils/venv-create.sh for you   |
-└----------------------------------------------------------------------┘
+┌──────────────────────────────────────────────────────────────────────┐
+│This Bash Script is made by Rishab (@Grobo021 on GitHub) to install:  │
+│* Vim                                                                 │
+│* HTop                                                                │
+│* Git                                                                 │
+│* ZSH                                                                 │
+│* VSCode                                                              │
+│* Chrome                                                              │
+│* Librewolf                                                           │
+│* Github CLI                                                          │
+│* Python3 with PiP and Venv                                           │
+│* NodeJS via the Node Version Manager                                 │
+│* Rust                                                                │
+│* Docker and Docker Compose                                           │
+│* Flatpak                                                             │
+│* Microsoft Fonts                                                     │
+│                                                                      │
+|Optionally: This script can also run ./utils/venv-create.sh for you   │
+└──────────────────────────────────────────────────────────────────────┘
 EOF
 
 while true; do
@@ -131,10 +131,10 @@ while true; do
 done
 
 cat << EOF
-┌---------------------------------------------------------------------┐
-|All Done! This script has succesfully completed, please reboot so    |
-|that changes take effect.                                            |
-└---------------------------------------------------------------------┘
+┌─────────────────────────────────────────────────────────────────────┐
+│All Done! This script has succesfully completed, please reboot so    │
+│that changes take effect.                                            │
+└─────────────────────────────────────────────────────────────────────┘
 (╯°□°）╯︵ ┻━┻ 
 EOF
 echo
