@@ -133,7 +133,7 @@ done
 cat << EOF
 ┌---------------------------------------------------------------------┐
 |All Done! This script has succesfully completed, please reboot so    |
-|that changes take effect :)                                          |
+|that changes take effect.                                            |
 └---------------------------------------------------------------------┘
 (╯°□°）╯︵ ┻━┻ 
 EOF
