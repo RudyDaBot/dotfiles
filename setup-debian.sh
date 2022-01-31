@@ -1,6 +1,7 @@
 #!/bin/bash
 
-if [ "$EUID" -ne 0 ] then 
+if [[ "$EUID" == 0 ]]
+then 
 cat << EOF
 ┌----------------------------------------------------------------------┐
 |Please don't run this script as root. We will ask you for the         |
@@ -29,7 +30,7 @@ cat << EOF
 |* Flatpak                                                             |
 |* Microsoft Fonts                                                     |
 |                                                                      |
-|Optionally: This script can also run `./utils/venv-create.sh` for you |
+|Optionally: This script can also run ./utils/venv-create.sh for you   |
 └----------------------------------------------------------------------┘
 EOF
 

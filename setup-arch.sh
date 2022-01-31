@@ -1,6 +1,7 @@
 #!/bin/bash
 
-if [ "$EUID" -ne 0 ] then 
+if [[ "$EUID" == 0 ]]
+then 
 cat << EOF
 ┌----------------------------------------------------------------------┐
 |Please don't run this script as root. We will ask you for the         |
@@ -31,7 +32,7 @@ cat << EOF
 |                                                                      |
 |Note: Please pay attention to yay prompts                             |
 |                                                                      |
-|Optionally: This script can also run `./utils/venv-create.sh` for you |
+|Optionally: This script can also run ./utils/venv-create.sh for you   |
 └----------------------------------------------------------------------┘
 EOF
 
@@ -107,15 +108,15 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 # Install Docker Compose
 ./utils/docker-compose-install.sh
 
-# Run Virtual Python Environment Script
-while true; do
-    read -p "Do you wish to run the virtual python environment script? " yn
-    case $yn in
-        [Yy]* ) ./utils/venv-create.sh --noconfirm;; break;;
-        [Nn]* ) exit;;
-        * ) echo "Please answer yes or no.";;
-    esac
-done
+# # Run Virtual Python Environment Script
+# while true; do
+#     read -p "Do you wish to run the virtual python environment script? " yn
+#     case $yn in
+#         [Yy]* ) ./utils/venv-create.sh --noconfirm;; break;;
+#         [Nn]* ) exit;;
+#         * ) echo "Please answer yes or no.";;
+#     esac
+# done
 
 cat << EOF
 ┌---------------------------------------------------------------------┐
