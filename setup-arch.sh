@@ -108,15 +108,15 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 # Install Docker Compose
 ./utils/docker-compose-install.sh
 
-# # Run Virtual Python Environment Script
-# while true; do
-#     read -p "Do you wish to run the virtual python environment script? " yn
-#     case $yn in
-#         [Yy]* ) ./utils/venv-create.sh --noconfirm;; break;;
-#         [Nn]* ) exit;;
-#         * ) echo "Please answer yes or no.";;
-#     esac
-# done
+# Run Virtual Python Environment Script
+while true; do
+    read -p "Do you wish to run the virtual python environment script? " yn
+    case $yn in
+        [Yy]* ) ./utils/venv-create.sh --noconfirm;; break;;
+        [Nn]* ) exit;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
 
 cat << EOF
 ┌---------------------------------------------------------------------┐
