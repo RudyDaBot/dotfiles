@@ -3,7 +3,7 @@
 cat << EOF
 ┌──────────────────────────────────────────────────────────────────────┐
 │This Bash Script is made by Rishab (@Grobo021 on GitHub) to create    │
-│a ~/.venv folder with Python Packages he needs, which are:-           │
+│a ~/.venv folder with Python Packages he needs, which are:            │
 │* Tensorflow                                                          │
 │* NumPy                                                               │
 │* Pandas                                                              │
