@@ -30,7 +30,7 @@ cat << EOF
 │* Flatpak                                                             │
 │* Microsoft Fonts                                                     │
 │                                                                      │
-|Optionally: This script can also run ./utils/venv-create.sh for you   │
+│Optionally: This script can also run ./utils/venv-create.sh for you   │
 └──────────────────────────────────────────────────────────────────────┘
 EOF
 
