@@ -28,11 +28,11 @@ cat << EOF
 │* Rust                                                                │
 │* Docker and Docker Compose                                           │
 │* Flatpak                                                             │
-│* Microsoft Fonts                                                     │
 │                                                                      │
 │Note: Please pay attention to yay prompts                             │
 │                                                                      │
 │Optionally: This script can also run ./utils/venv-create.sh for you   │
+│Optionally: This script can also install Microsoft Fonts              │
 └──────────────────────────────────────────────────────────────────────┘
 EOF
 
@@ -53,20 +53,13 @@ sudo sed -i "s/#Color/Color/" /etc/pacman.conf
 sudo sed -i "s/#ParallelDownloads=5/ParallelDownloads=5/" /etc/pacman.conf
 
 # Install Things 
-sudo pacman -S --no-confirm \
-    # Vim, HTop, GiT
+sudo pacman -S --noconfirm \
     vim htop git \
-    # Important system tools like fakeroot
     base-devel \
-    # 7zip but for linux, needed for microsoft fonts
     p7zip \
-    # Z Shell
     zsh \
-    # Python and PiP package manager
     python python-pip \
-    # Github CLI and Chromium
     github-cli chromium \
-    # Docker and Flatpak
     docker flatpak
 
 # Install Yay
@@ -81,11 +74,8 @@ chsh -s $(which zsh)
 
 # Install More things
 yay -S \
-    # QEMU/KVM with Virt-Manager
     qemu virt-manager ebtables \
-    # VSCode
     visual-studio-code-bin \
-    # Librewolf
     librewolf-bin
 
 # Add the person running this script to the libvirt and docker groups
@@ -95,9 +85,6 @@ sudo usermod -aG docker $USER
 # Enable and Start Libvirt Daemon
 sudo systemctl enable libvirtd
 sudo systemctl start libvirtd
-
-# Install Microsoft Fonts
-./utils/microsoft-fonts-install.sh
 
 # Install NodeJS via Node Version Manager
 ./utils/nvm-install.sh
@@ -110,9 +97,19 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 # Run Virtual Python Environment Script
 while true; do
-    read -p "Do you wish to run the virtual python environment script? " yn
-    case $yn in
-        [Yy]* ) ./utils/venv-create.sh --noconfirm;; break;;
+    read -p "Do you wish to run the virtual python environment script? " yn1
+    case $yn1 in
+        [Yy]* ) ./utils/venv-create.sh --noconfirm; break;;
+        [Nn]* ) exit;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+
+# Install Microsoft fonts
+while true; do
+    read -p "Do you wish to install Microsoft Fonts? " yn2
+    case $yn2 in
+	[Yy]* ) ./utils/microsoft-fonts-install.sh; break;;
         [Nn]* ) exit;;
         * ) echo "Please answer yes or no.";;
     esac
