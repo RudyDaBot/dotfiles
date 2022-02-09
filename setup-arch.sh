@@ -32,7 +32,7 @@ cat << EOF
 │Note: Please pay attention to yay prompts                             │
 │                                                                      │
 │Optionally: This script can also run ./utils/venv-create.sh for you   │
-│Optionally: This script can also install Microsoft Fonts              │
+│and install Microsoft Fonts.                                          │
 └──────────────────────────────────────────────────────────────────────┘
 EOF
 
@@ -87,7 +87,7 @@ sudo systemctl enable libvirtd
 sudo systemctl start libvirtd
 
 # Install NodeJS via Node Version Manager
-./utils/nvm-install.sh
+zsh ./utils/nvm-install.sh
 
 # Install Rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -97,20 +97,20 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 # Run Virtual Python Environment Script
 while true; do
-    read -p "Do you wish to run the virtual python environment script? " yn1
-    case $yn1 in
+    read -p "Do you wish to run the virtual python environment script? " yn
+    case $yn in
         [Yy]* ) ./utils/venv-create.sh --noconfirm; break;;
-        [Nn]* ) exit;;
+        [Nn]* ) break;;
         * ) echo "Please answer yes or no.";;
     esac
 done
 
-# Install Microsoft fonts
+# Microsoft Fonts Install
 while true; do
-    read -p "Do you wish to install Microsoft Fonts? " yn2
-    case $yn2 in
-	[Yy]* ) ./utils/microsoft-fonts-install.sh; break;;
-        [Nn]* ) exit;;
+    read -p "Do you wish to install microsoft fonts " yn
+    case $yn in
+        [Yy]* ) ./utils/microsoft-fonts-install.sh; break;;
+        [Nn]* ) break;;
         * ) echo "Please answer yes or no.";;
     esac
 done
