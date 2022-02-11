@@ -30,7 +30,7 @@ cat << EOF
 │* Flatpak                                                             │
 │                                                                      │
 │Optionally: This script can also run ./utils/venv-create.sh for you,  │
-│install Microfost Fonts and remove the snap package manager.          │
+│install Microfost Fonts.                                              │
 └──────────────────────────────────────────────────────────────────────┘
 EOF
 
