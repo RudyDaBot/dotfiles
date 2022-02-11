@@ -28,9 +28,9 @@ cat << EOF
 │* Rust                                                                │
 │* Docker and Docker Compose                                           │
 │* Flatpak                                                             │
-│* Microsoft Fonts                                                     │
 │                                                                      │
-│Optionally: This script can also run ./utils/venv-create.sh for you   │
+│Optionally: This script can also run ./utils/venv-create.sh for you,  │
+│install Microfost Fonts and remove the snap package manager.          │
 └──────────────────────────────────────────────────────────────────────┘
 EOF
 
@@ -50,7 +50,7 @@ sudo apt-get update
 
 # Install Things
 sudo apt-get --assume-yes install \
-	vim htop git \
+	vim htop git curl \
 	ovmf virt-manager \
 	p7zip-full p7zip-rar \
 	software-properties-common apt-transport-https \
@@ -76,11 +76,10 @@ sudo apt-get update
 sudo apt-get install --assume-yes code
 
 # Install Github CLI
-curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo gpg --dearmor -o /usr/share/keyrings/githubcli-archive-keyring.gpg
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
-
-sudo apt-get update
-sudo apt-get install --assume-yes gh
+curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/etc/apt/trusted.gpg.d/githubcli-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/trusted.gpg.d/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+sudo apt update
+sudo apt install gh
 
 # Install Google Chrome
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
@@ -92,9 +91,6 @@ echo "deb [arch=amd64] http://deb.librewolf.net $(lsb_release -sc) main" | sudo 
 sudo wget https://deb.librewolf.net/keyring.gpg -O /etc/apt/trusted.gpg.d/librewolf.gpg
 sudo apt update
 sudo apt install librewolf -y
-
-# Install Microsoft Fonts
-./utils/microsoft-fonts-install.sh
 
 # Install NodeJS via Node Version Manager
 ./utils/nvm-install.sh
@@ -124,8 +120,18 @@ sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub
 while true; do
     read -p "Do you wish to run the virtual python environment script? " yn
     case $yn in
-        [Yy]* ) ./utils/venv-create.sh --noconfirm;; break;;
-        [Nn]* ) exit;;
+        [Yy]* ) ./utils/venv-create.sh --noconfirm; break;;
+        [Nn]* ) break;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+
+# Microsoft Fonts Install
+while true; do
+    read -p "Do you wish to install microsoft fonts? " yn
+    case $yn in
+        [Yy]* ) ./utils/microsoft-fonts-install.sh; break;;
+        [Nn]* ) break;;
         * ) echo "Please answer yes or no.";;
     esac
 done

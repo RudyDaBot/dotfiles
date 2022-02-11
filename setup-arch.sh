@@ -87,7 +87,7 @@ sudo systemctl enable libvirtd
 sudo systemctl start libvirtd
 
 # Install NodeJS via Node Version Manager
-zsh ./utils/nvm-install.sh
+./utils/nvm-install.sh
 
 # Install Rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -107,7 +107,7 @@ done
 
 # Microsoft Fonts Install
 while true; do
-    read -p "Do you wish to install microsoft fonts " yn
+    read -p "Do you wish to install microsoft fonts? " yn
     case $yn in
         [Yy]* ) ./utils/microsoft-fonts-install.sh; break;;
         [Nn]* ) break;;
