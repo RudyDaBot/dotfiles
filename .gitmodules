@@ -1,0 +1,3 @@
+[submodule "snap-nuke"]
+	path = utils/snap-nuke
+	url = https://github.com/grobo021/snap-nuke

@@ -30,7 +30,7 @@ cat << EOF
 │* Flatpak                                                             │
 │                                                                      │
 │Optionally: This script can also run ./utils/venv-create.sh for you,  │
-│install Microfost Fonts.                                              │
+│install Microfost Fonts and remove the snap package manager.          │
 └──────────────────────────────────────────────────────────────────────┘
 EOF
 
@@ -131,6 +131,16 @@ while true; do
     read -p "Do you wish to install microsoft fonts? " yn
     case $yn in
         [Yy]* ) ./utils/microsoft-fonts-install.sh; break;;
+        [Nn]* ) break;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+
+# Snap Remove
+while true; do
+    read -p "Do you wish to remove the snap package manager? " yn
+    case $yn in
+        [Yy]* ) ./utils/snap-nuke/snap-nuke.sh; break;;
         [Nn]* ) break;;
         * ) echo "Please answer yes or no.";;
     esac
