@@ -7,6 +7,3 @@ Welcome to Dotfiles!
 This post installation script installs many essential programs on to your system!
 
 Debian based and Arch based systems are currently supported, i am still working on Fedora based systems.
-
-WARNING - AUR packages may be used depending on your preferences, we use yay as the AUR helper so please ensure you have yay installed.
-
